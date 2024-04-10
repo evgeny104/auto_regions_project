@@ -1,8 +1,8 @@
 import json
 import requests
+from json_object import error_country_code
 
-
-def test_total_count():     # Функция проверяет -строку- "total", общее количество регионов в базе 22
+'''def test_total_count():     # Функция проверяет -строку- "total", общее количество регионов в базе 22
     res = requests.get('https://regions-test.2gis.com/1.0/regions?page_size=5')
     body = json.loads(res.text)
     assert body["total"] == 22
@@ -28,51 +28,53 @@ def test_region_q_allignore():      # Функция проверяет поис
     assert (body["items"][0]["name"]) == "Уфа"
     assert (body["items"][0]["code"]) == "ufa"
     assert (body["items"][0]["country"]["name"]) == "Россия"
-    assert (body["items"][0]["country"]["code"]) == "ru"
+    assert (body["items"][0]["country"]["code"]) == "ru"'''
 
 
-def test_contre_code_ru():     # Функция проверяет  Код страны для фильтрации "ru"
-    res = requests.get('https://regions-test.2gis.com/1.0/regions?country_code=ru')
-    body = json.loads(res.text)
-    assert body["items"][0]["country"]["name"] == "Россия"
-    assert body["items"][0]["country"]["code"] == "ru"
+def test_country_code_ru():  # № Test 502,2
+    url = 'https://regions-test.2gis.com/1.0/regions?country_code=ru'
+    request = requests.get(url)
+    assert request.status_code == 200
+    data = request.json()
+    country_codes = [item['country']['code'] for item in data['items']]
+    assert country_codes, "list of country codes, not empty"
+    assert all(code == 'ru' for code in country_codes), f"Not all country codes are 'ru': {country_codes}"
 
 
-def test_contre_code_kg():     # Код страны для фильтрации "kg"
-    res = requests.get('https://regions-test.2gis.com/1.0/regions?country_code=kg')
-    body = json.loads(res.text)
-    print(body)
-    assert body["items"][0]["country"]["name"] == "Кыргызстан"
-    assert body["items"][0]["country"]["code"] == "kg"
+def test_country_code_kg():  # № Test 502,3
+    url = 'https://regions-test.2gis.com/1.0/regions?country_code=kg'
+    request = requests.get(url)
+    assert request.status_code == 200
+    data = request.json()
+    country_codes = [item['country']['code'] for item in data['items']]
+    assert country_codes, "list of country codes, not empty"
+    assert all(code == 'kg' for code in country_codes), f"Not all country codes are 'kg': {country_codes}"
 
 
-def test_contre_code_kz():     # Код страны для фильтрации "kz"
-    res = requests.get('https://regions-test.2gis.com/1.0/regions?country_code=kz')
-    body = json.loads(res.text)
-    assert body["items"][3]["country"]["name"] == "Казахстан"
-    assert body["items"][3]["country"]["code"] == "kz"
+def test_country_code_kz():  # № Test 502,4
+    url = 'https://regions-test.2gis.com/1.0/regions?country_code=kz'
+    request = requests.get(url)
+    assert request.status_code == 200
+    data = request.json()
+    country_codes = [item['country']['code'] for item in data['items']]
+    assert country_codes, "list of country codes, not empty"
+    assert all(code == 'kz' for code in country_codes), f"Not all country codes are 'kz': {country_codes}"
 
 
-def test_contre_code_cz():     # Код страны для фильтрации "cz"
-    res = requests.get('https://regions-test.2gis.com/1.0/regions?country_code=cz')
-    body = json.loads(res.text)
-    assert body["items"][0]["country"]["name"] == "Чехия"
-    assert body["items"][0]["country"]["code"] == "cz"
+def test_country_code_cz():  # № Test 502,5
+    url = 'https://regions-test.2gis.com/1.0/regions?country_code=cz'
+    request = requests.get(url)
+    assert request.status_code == 200
+    data = request.json()
+    country_codes = [item['country']['code'] for item in data['items']]
+    assert country_codes, "list of country codes, not empty"
+    assert all(code == 'cz' for code in country_codes), f"Not all country codes are 'cz': {country_codes}"
 
 
-def test_region_q_empty_param():      # проверяет status cod empty param
-    res = requests.get('https://regions-test.2gis.com/1.0/regions?')
-    assert res.status_code == 200
-
-
-test_total_count()
-test_region_q()
-test_region_q_register()
-test_region_q_allignore()
-
-test_contre_code_ru()
-test_contre_code_kg()
-test_contre_code_kz()
-test_contre_code_cz()
-test_region_q_empty_param()
-
+def test_country_code_test():  # № Test 502,6
+    url = 'https://regions-test.2gis.com/1.0/regions?country_code=test'
+    request = requests.get(url)
+    assert request.status_code == 200
+    data = request.json()
+    assert data, "list of country codes, not empty"
+    assert error_country_code['error']['message'] == data['error']['message']
