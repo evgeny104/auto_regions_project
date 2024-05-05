@@ -9,8 +9,8 @@ def check_status_code(response):
 
 def get_response(url):
     try:
-        response = requests.get(url)  # Получаем ответ по указанному URL
-        parsed_json = response.json()  # Парсим JSON-ответ
-        return response, parsed_json  # Возвращаем распарсенный JSON
+        response = requests.get(url)
+        parsed_json = response.json()
+        return response, parsed_json
     except json.decoder.JSONDecodeError:
         assert False, "Error: Response is not in JSON format"
