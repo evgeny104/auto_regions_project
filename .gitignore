@@ -1,3 +1,3 @@
-project_in_progress/notes.py
-.idea/
-project_in_progress/__pycache__/
+env_vars/notes.py
+env_vars/.env
+venv/
