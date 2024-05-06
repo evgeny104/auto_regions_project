@@ -441,3 +441,4 @@ def test_negativ_q():
         "No 'items' key in the response"
     assert parsed_json['items'][0]['name'] == 'Новосибирск', \
         "Error in 'param g' string for fuzzy search"
+
