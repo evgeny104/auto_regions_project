@@ -1,0 +1,5 @@
+env_vars/notes.py
+env_vars/.env
+/venv/
+__pycache__
+.idea
