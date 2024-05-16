@@ -14,3 +14,5 @@ def get_response(url):
         return response, parsed_json
     except json.decoder.JSONDecodeError:
         assert False, "Error: Response is not in JSON format"
+
+

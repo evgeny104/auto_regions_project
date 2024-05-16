@@ -14,7 +14,7 @@ error_page = \
                 "message": "Параметр 'page' должен быть целым числом"
             }
         },
-        "above_zero": {
+        "param_zero": {
             "error": {
                 "id": "0c9342cd-3550-4956-8d46-f26cbe1a7d7c",
                 "message": "Параметр 'page' должен быть больше 0"

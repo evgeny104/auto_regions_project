@@ -1,8 +1,6 @@
 import os
-from dotenv import (
-    load_dotenv)
+from dotenv import load_dotenv
 
-load_dotenv()                                                   # loads environment variables from the .env file
+load_dotenv()
 
-URL = os.getenv('API_URL')                                      # To store global variables
-print(f"Hello: {os.getenv('API_URL')}")
+api_url = os.getenv('API_URL')
