@@ -52,7 +52,11 @@ def test_code_kg():
     url = f"{api_url}country_code=kg"
     response, parsed_json = get_response(url)
     check_status_code(response)
-    check_country_code(parsed_json, "kg")
+    check_country_code(
+
+
+
+        parsed_json, "kg")
 
 
 def test_code_kz():
